@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title>Kinematic Chains</title>
+  </head>
+  <body>
+    <h1>Kinematic Chains</h1>
+    <hr>
+    <!-- Flash the error messages -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>{{ message }} </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Forms that receive length and all 4 entries as input -->
+    <form action="" method="post" name="login">
+    	{{form.hidden_tag()}}
+    	<p>
+    		Enter the length (Optional. Standard = 10):<br>
+    		{{form.length(size=10)}}<br>
+    	</p>
+    	<hr>
+    	<p>
+        	Enter the entries:<br>
+        	Entry 1 {{form.entry_1(size=10)}}<br>
+        	Entry 2 {{form.entry_2(size=10)}}<br>
+        	Entry 3 {{form.entry_3(size=10)}}<br>
+        	Entry 4 {{form.entry_4(size=10)}}<br>
+    	</p>
+    	<p><input type="submit" value="Submit"></p>
+	</form>
+
+	<!-- Dynamic version of professor's svg -->
+	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="250px" width="400px" viewBox="-50 -50 100 75">
+		<defs>
+			<rect id="segment" x="0" y="-2" height="4" width="{{length}}" stroke="black" fill="white"/>
+			<circle id="dot" cx="0" cy="0" r="1" stroke="black" stroke-width=".5" fill="#CCC"/>
+			<rect id="redbox" x="-3" y="-3" height="6" width="6" fill="red" opacity=".5" stroke="red"/>
+		</defs>
+
+		<rect x="-50" y="-50" height="75" width="100" stroke="black" fill="#EEE" />
+		<line x1="0" y1="-50" x2="0" y2="25" stroke="#888" stroke-width=".5" />
+		<line x1="-50" y1="0" x2="50" y2="0" stroke="#888" stroke-width=".5" />
+
+		<g transform="scale(1,-1)rotate({{entry1}})">
+			<use xlink:href="#segment" /> 
+			<use xlink:href="#dot" />
+			<g transform="translate({{length}},0) rotate({{entry2}})">
+				<use xlink:href="#segment" /> 
+				<use xlink:href="#dot" />
+				<g transform="translate({{length}},0) rotate({{entry3}})">
+					<use xlink:href="#segment" /> 
+					<use xlink:href="#dot" />
+					<g transform="translate({{length}},0) rotate({{entry4}})">
+						<use xlink:href="#segment" /> 
+						<use xlink:href="#dot" />
+						<g transform="translate({{length}},0)">
+							<use xlink:href="#dot" />
+							<use xlink:href="#redbox" />
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</svg>
+	<!-- Print the output -->
+	<p>Output 1: ({{output1x}}, {{output1y}})</p>
+	<p>Output 2: ({{output2x}}, {{output2y}})</p>
+ 	<p>Output 3: ({{output3x}}, {{output3y}})</p>
+	<p>Output 4: ({{output4x}}, {{output4y}})</p>
+ </body>
+</html>
