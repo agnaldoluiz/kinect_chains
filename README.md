@@ -6,7 +6,11 @@ Professor Mike Gleicher
 
 By Agnaldo Luiz Cunha
 
-HOW TO RUN
+THE PROJECT IS DEPLOYED! You can check it out at:
+
+	http://kinematicchains.herokuapp.com
+
+HOW TO RUN LOCAL
 
 - You need Python 2.7 running in your computer
 - Clone the repository into a folder
